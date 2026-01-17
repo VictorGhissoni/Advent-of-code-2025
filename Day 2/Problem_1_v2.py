@@ -64,8 +64,6 @@ def invalid_ids(input):
     count = 0
     for inp in input:
         start, end = inp.split(sep='-')
-        print(f"start = {start}")
-        print(f"end = {end}")
         n_check = [2]
         for n in n_check:
             if (is_repeated(start,n)):
@@ -85,4 +83,4 @@ def invalid_ids(input):
 
     return count
 
-print(f"count = {invalid_ids(inp)}")
+print(f"count = {invalid_ids(inp):,}")

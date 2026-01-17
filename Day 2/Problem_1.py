@@ -25,4 +25,4 @@ def invalid_ids(input):
                 count += i
     return count
 
-print(invalid_ids(inp))
+print(f"count = {invalid_ids(inp):,}")
