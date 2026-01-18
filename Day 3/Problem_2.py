@@ -31,7 +31,7 @@ def find_n_max(l: list, n:int):
         n= n-1
     return m
 
-def largest_jolt_NoTCO(line, n = 2):
+def largest_jolt_NoTCO(line, n = 2): #Manually optimized based on TCO
     msg = ''
     depth = 1
     
@@ -49,16 +49,34 @@ def largest_jolt_NoTCO(line, n = 2):
         line = line[idx+1:]
         msg += m
         n = n-1
+
+def largest_jolt_minorOpt(line, n): #this version doesn't check max if it's not necessary
+    msg = ''
+    while(True):
+        if n == 0:
+            return msg
+        m = max(line[:-n + 1 or None])#when n is 1 will just use line[:]
+        idx = line.index(m)
+        #highlight_index(line, idx)
+        #print(f"len(line) = {len(line)}, index = {idx}, n = {n}, len(line) - idx = {len(line)-idx}, max = {m}")
+        if (n == len(line) - idx):
+            rest = "".join(line[idx:])
+            msg = msg+rest
+            return msg
+        line = line[idx+1:]
+        msg += m
+        n -= 1
+
     
 
 def sum_banks(inp):
     result = 0
     for bank in inp:
-        tmp = int(largest_jolt_NoTCO(list(bank), n = 12))
+        tmp = int(largest_jolt_minorOpt(list(bank), n = 12))
         #print(f"tmp = {tmp:,}")
-        # if input("press c to continue\n")!= "c":
-        #     break
-        # print("="*100)
+        #if input("press c to continue\n")!= "c":
+        #    break
+        #print("="*100)
         result += tmp
     return result
 

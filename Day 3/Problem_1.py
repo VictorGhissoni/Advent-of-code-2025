@@ -47,7 +47,7 @@ def largest_jolt_recursion(line:list , original:str , side: int, n:int = 2): #py
     return original
 
 
-def largest_jolt_NoTCO(line, n = 2, original = ''):
+def largest_jolt_NoTCO(line, n = 2, original = ''): #Manually optimized based on TCO
     msg = ''
     side = -1
     
