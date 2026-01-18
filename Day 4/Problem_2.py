@@ -6,7 +6,8 @@ __location__ = os.path.realpath(
 f = open(os.path.join(__location__, 'input.txt'))
 inp = f.read()
 inp = inp.splitlines()
-
+for line in range(len(inp)): #necessary conversion for the iterative version, strings are immutable
+    inp[line] = list(inp[line])
 
 def add_adj(row, col, count_matrix, n_rows, n_cols):
     
@@ -58,8 +59,26 @@ def count_viable(lim, input):
         return result
     return result + count_viable(4, new_board)
 
-#really unhappy with this one, would like to do without recursion
+def count_viable_iterative(lim, entry:list): #recursive turned into iterative
+    
+    n_cols = len(entry[0])
+    n_rows = len(entry)
+    final_result = 0
+    count_matrix = [[0]*n_cols for _ in range(n_rows)]
+    while(True):
+        counter = 0
+        count_adjacent_papers(lim, entry, count_matrix, n_rows, n_cols)
+        for row in range(n_rows):
+            for col in range(n_cols):
+                if count_matrix[row][col] < lim:
+                    counter += 1
+                    entry[row][col] = '.'
+                count_matrix[row][col] = 0
+        if counter == 0:
+            return final_result 
+        final_result += counter
 
-print(f"count_viable = {count_viable(4, inp)}")
+#print(f"count_viable = {count_viable(4, inp):,}")
+print(f"count_viable_iterative = {count_viable_iterative(4, inp):,}")
 
 
