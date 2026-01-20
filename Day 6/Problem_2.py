@@ -4,7 +4,7 @@ from functools import reduce
 __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
-f = open(os.path.join(__location__, 'input.txt'))
+f = open(os.path.join(__location__, 'example.txt'))
 inp = f.read()
 inp = inp.splitlines()
 
@@ -31,10 +31,8 @@ def parse_entrys(entry):
         if(num != ''):
             nums.append(int(num))
         if(col == [' ']*SIZE):
-            #print(f"nums = {nums}")
-            #print(f"op = {op}")
             result += homework(nums, op)
     result += homework(nums, op)
     return result
         
-print(f"parse_entrys = {parse_entrys(inp)}")
+print(f"parse_entrys = {parse_entrys(inp):,}")
